@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.GrantBudgetDetailLhMapper">
+<resultMap id="BaseResultMap" type="com.example.demo.pojo.GrantBudgetDetailLh" >
+    <id column="id" property="id"/>
+    <result column="parent_id" property="parentId"/>
+    <result column="p_ysftbm" property="pYsftbm"/>
+    <result column="p_ysftbm_name" property="pYsftbmName"/>
+    <result column="p_fx" property="pFx"/>
+    <result column="p_yslx" property="pYslx"/>
+    <result column="p_fylx" property="pFylx"/>
+    <result column="p_ftje" property="pFtje"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+</resultMap>
+<sql id="Base_Column_List" >
+id,parent_id,p_ysftbm,p_ysftbm_name,p_fx,p_yslx,p_fylx,p_ftje,create_time,update_time</sql>
+
+<sql id="Example_Where_Clause"><trim prefix="where" prefixOverrides="and|or">  
+<if test="id!= null">and id=#{id}</if>
+<if test="parentId!= null">and parent_id=#{parentId}</if>
+<if test="pYsftbm!= null">and p_ysftbm=#{pYsftbm}</if>
+<if test="pYsftbmName!= null">and p_ysftbm_name=#{pYsftbmName}</if>
+<if test="pFx!= null">and p_fx=#{pFx}</if>
+<if test="pYslx!= null">and p_yslx=#{pYslx}</if>
+<if test="pFylx!= null">and p_fylx=#{pFylx}</if>
+<if test="pFtje!= null">and p_ftje=#{pFtje}</if>
+<if test="createTime!= null">and create_time=#{createTime}</if>
+<if test="updateTime!= null">and update_time=#{updateTime}</if></trim></sql>
+<insert id="insert" parameterType="com.example.demo.pojo.GrantBudgetDetailLh"  useGeneratedKeys="true" keyProperty="id" >
+    insert into grant_budget_detail_lh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="parentId != null" >
+          parent_id,
+        </if>
+        <if test="pYsftbm != null" >
+          p_ysftbm,
+        </if>
+        <if test="pYsftbmName != null" >
+          p_ysftbm_name,
+        </if>
+        <if test="pFx != null" >
+          p_fx,
+        </if>
+        <if test="pYslx != null" >
+          p_yslx,
+        </if>
+        <if test="pFylx != null" >
+          p_fylx,
+        </if>
+        <if test="pFtje != null" >
+          p_ftje,
+        </if>
+        <if test="createTime != null" >
+          create_time,
+        </if>
+        <if test="updateTime != null" >
+          update_time,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="parentId != null"> 
+          #{parentId},
+        </if>
+        <if test="pYsftbm != null"> 
+          #{pYsftbm},
+        </if>
+        <if test="pYsftbmName != null"> 
+          #{pYsftbmName},
+        </if>
+        <if test="pFx != null"> 
+          #{pFx},
+        </if>
+        <if test="pYslx != null"> 
+          #{pYslx},
+        </if>
+        <if test="pFylx != null"> 
+          #{pFylx},
+        </if>
+        <if test="pFtje != null"> 
+          #{pFtje},
+        </if>
+        <if test="createTime != null"> 
+          #{createTime},
+        </if>
+        <if test="updateTime != null"> 
+          #{updateTime},
+        </if>
+    </trim>
+</insert>
+<update id="updateById" parameterType="com.example.demo.pojo.GrantBudgetDetailLh" >
+update grant_budget_detail_lh <set>
+    <if test="parentId != null">parent_id=#{parentId},</if>
+    <if test="pYsftbm != null">p_ysftbm=#{pYsftbm},</if>
+    <if test="pYsftbmName != null">p_ysftbm_name=#{pYsftbmName},</if>
+    <if test="pFx != null">p_fx=#{pFx},</if>
+    <if test="pYslx != null">p_yslx=#{pYslx},</if>
+    <if test="pFylx != null">p_fylx=#{pFylx},</if>
+    <if test="pFtje != null">p_ftje=#{pFtje},</if>
+    <if test="createTime != null">create_time=#{createTime},</if>
+    <if test="updateTime != null">update_time=#{updateTime},</if></set>
+ where id=#{id}
+</update>
+<delete id="deleteById" parameterType = "java.lang.Long">
+delete from grant_budget_detail_lh where id = #{id}
+</delete>
+<select id="selectListByParams" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.GrantBudgetDetailLh">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_detail_lh
+    <include refid="Example_Where_Clause"/> 
+</select>
+
+<select id="selectByIds" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_detail_lh
+    where id in
+    <foreach collection="ids" open="(" close=")" separator="," item="item">
+        #{item}
+    </foreach> 
+</select>
+
+<select id="selectById" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_detail_lh
+    where id = #{id}
+</select>
+
+<select id="selectByObject" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.GrantBudgetDetailLh">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_detail_lh
+    <include refid="Example_Where_Clause"/> limit 1
+</select>
+<!--以上为自动生成的crud代码可根据具体需求自行修改-->
+
+</mapper>

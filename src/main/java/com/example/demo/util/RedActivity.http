@@ -1,0 +1,5 @@
+POST http://localhost:8511/redPackActivity/detail/1
+Content-Type: application/json
+X-lc-op-loginKey: TGT-62049-LQ5jEyhYF7NHuLKLHW8KUcTiz34vSYKcAqZd4tIhrv7JAYeBpJc9Pg0ePcGzJiU51lY-longhu
+
+

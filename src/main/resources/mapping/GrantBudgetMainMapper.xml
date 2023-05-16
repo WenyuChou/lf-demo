@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.GrantBudgetMainMapper">
+<resultMap id="BaseResultMap" type="com.example.demo.pojo.GrantBudgetMain" >
+    <id column="id" property="id"/>
+    <result column="request_no" property="requestNo"/>
+    <result column="source" property="source"/>
+    <result column="order_no" property="orderNo"/>
+    <result column="budget_occupy_amt" property="budgetOccupyAmt"/>
+    <result column="serial_type" property="serialType"/>
+    <result column="status" property="status"/>
+    <result column="budget_occupy_type" property="budgetOccupyType"/>
+    <result column="grant_type" property="grantType"/>
+    <result column="budget_batch_no" property="budgetBatchNo"/>
+    <result column="serial_no" property="serialNo"/>
+    <result column="action_type" property="actionType"/>
+    <result column="app_id" property="appId"/>
+    <result column="remark" property="remark"/>
+    <result column="budget_result_code" property="budgetResultCode"/>
+    <result column="budget_result_msg" property="budgetResultMsg"/>
+    <result column="p_ssxm" property="pSsxm"/>
+    <result column="p_fkdw" property="pFkdw"/>
+    <result column="p_fkdw_name" property="pFkdwName"/>
+    <result column="p_bz" property="pBz"/>
+    <result column="p_zdr" property="pZdr"/>
+    <result column="p_sqr" property="pSqr"/>
+    <result column="p_ssbm" property="pSsbm"/>
+    <result column="p_skdw" property="pSkdw"/>
+    <result column="p_lyxtid" property="pLyxtid"/>
+    <result column="p_lyxt" property="pLyxt"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+    <result column="budget_time" property="budgetTime"/>
+    <result column="is_deleted" property="isDeleted"/>
+    <result column="seq" property="seq"/>
+</resultMap>
+<sql id="Base_Column_List" >
+id,request_no,source,order_no,budget_occupy_amt,serial_type,status,budget_occupy_type,grant_type,budget_batch_no,serial_no,action_type,app_id,remark,budget_result_code,budget_result_msg,p_ssxm,p_fkdw,p_fkdw_name,p_bz,p_zdr,p_sqr,p_ssbm,p_skdw,p_lyxtid,p_lyxt,create_time,update_time,budget_time,is_deleted,seq</sql>
+
+<sql id="Example_Where_Clause"><trim prefix="where" prefixOverrides="and|or">  
+<if test="id!= null">and id=#{id}</if>
+<if test="requestNo!= null">and request_no=#{requestNo}</if>
+<if test="source!= null">and source=#{source}</if>
+<if test="orderNo!= null">and order_no=#{orderNo}</if>
+<if test="budgetOccupyAmt!= null">and budget_occupy_amt=#{budgetOccupyAmt}</if>
+<if test="serialType!= null">and serial_type=#{serialType}</if>
+<if test="status!= null">and status=#{status}</if>
+<if test="budgetOccupyType!= null">and budget_occupy_type=#{budgetOccupyType}</if>
+<if test="grantType!= null">and grant_type=#{grantType}</if>
+<if test="budgetBatchNo!= null">and budget_batch_no=#{budgetBatchNo}</if>
+<if test="serialNo!= null">and serial_no=#{serialNo}</if>
+<if test="actionType!= null">and action_type=#{actionType}</if>
+<if test="appId!= null">and app_id=#{appId}</if>
+<if test="remark!= null">and remark=#{remark}</if>
+<if test="budgetResultCode!= null">and budget_result_code=#{budgetResultCode}</if>
+<if test="budgetResultMsg!= null">and budget_result_msg=#{budgetResultMsg}</if>
+<if test="pSsxm!= null">and p_ssxm=#{pSsxm}</if>
+<if test="pFkdw!= null">and p_fkdw=#{pFkdw}</if>
+<if test="pFkdwName!= null">and p_fkdw_name=#{pFkdwName}</if>
+<if test="pBz!= null">and p_bz=#{pBz}</if>
+<if test="pZdr!= null">and p_zdr=#{pZdr}</if>
+<if test="pSqr!= null">and p_sqr=#{pSqr}</if>
+<if test="pSsbm!= null">and p_ssbm=#{pSsbm}</if>
+<if test="pSkdw!= null">and p_skdw=#{pSkdw}</if>
+<if test="pLyxtid!= null">and p_lyxtid=#{pLyxtid}</if>
+<if test="pLyxt!= null">and p_lyxt=#{pLyxt}</if>
+<if test="createTime!= null">and create_time=#{createTime}</if>
+<if test="updateTime!= null">and update_time=#{updateTime}</if>
+<if test="budgetTime!= null">and budget_time=#{budgetTime}</if>
+<if test="isDeleted!= null">and is_deleted=#{isDeleted}</if>
+<if test="seq!= null">and seq=#{seq}</if></trim></sql>
+<insert id="insert" parameterType="com.example.demo.pojo.GrantBudgetMain"  useGeneratedKeys="true" keyProperty="id" >
+    insert into grant_budget_main
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="requestNo != null" >
+          request_no,
+        </if>
+        <if test="source != null" >
+          source,
+        </if>
+        <if test="orderNo != null" >
+          order_no,
+        </if>
+        <if test="budgetOccupyAmt != null" >
+          budget_occupy_amt,
+        </if>
+        <if test="serialType != null" >
+          serial_type,
+        </if>
+        <if test="status != null" >
+          status,
+        </if>
+        <if test="budgetOccupyType != null" >
+          budget_occupy_type,
+        </if>
+        <if test="grantType != null" >
+          grant_type,
+        </if>
+        <if test="budgetBatchNo != null" >
+          budget_batch_no,
+        </if>
+        <if test="serialNo != null" >
+          serial_no,
+        </if>
+        <if test="actionType != null" >
+          action_type,
+        </if>
+        <if test="appId != null" >
+          app_id,
+        </if>
+        <if test="remark != null" >
+          remark,
+        </if>
+        <if test="budgetResultCode != null" >
+          budget_result_code,
+        </if>
+        <if test="budgetResultMsg != null" >
+          budget_result_msg,
+        </if>
+        <if test="pSsxm != null" >
+          p_ssxm,
+        </if>
+        <if test="pFkdw != null" >
+          p_fkdw,
+        </if>
+        <if test="pFkdwName != null" >
+          p_fkdw_name,
+        </if>
+        <if test="pBz != null" >
+          p_bz,
+        </if>
+        <if test="pZdr != null" >
+          p_zdr,
+        </if>
+        <if test="pSqr != null" >
+          p_sqr,
+        </if>
+        <if test="pSsbm != null" >
+          p_ssbm,
+        </if>
+        <if test="pSkdw != null" >
+          p_skdw,
+        </if>
+        <if test="pLyxtid != null" >
+          p_lyxtid,
+        </if>
+        <if test="pLyxt != null" >
+          p_lyxt,
+        </if>
+        <if test="createTime != null" >
+          create_time,
+        </if>
+        <if test="updateTime != null" >
+          update_time,
+        </if>
+        <if test="budgetTime != null" >
+          budget_time,
+        </if>
+        <if test="isDeleted != null" >
+          is_deleted,
+        </if>
+        <if test="seq != null" >
+          seq,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="requestNo != null"> 
+          #{requestNo},
+        </if>
+        <if test="source != null"> 
+          #{source},
+        </if>
+        <if test="orderNo != null"> 
+          #{orderNo},
+        </if>
+        <if test="budgetOccupyAmt != null"> 
+          #{budgetOccupyAmt},
+        </if>
+        <if test="serialType != null"> 
+          #{serialType},
+        </if>
+        <if test="status != null"> 
+          #{status},
+        </if>
+        <if test="budgetOccupyType != null"> 
+          #{budgetOccupyType},
+        </if>
+        <if test="grantType != null"> 
+          #{grantType},
+        </if>
+        <if test="budgetBatchNo != null"> 
+          #{budgetBatchNo},
+        </if>
+        <if test="serialNo != null"> 
+          #{serialNo},
+        </if>
+        <if test="actionType != null"> 
+          #{actionType},
+        </if>
+        <if test="appId != null"> 
+          #{appId},
+        </if>
+        <if test="remark != null"> 
+          #{remark},
+        </if>
+        <if test="budgetResultCode != null"> 
+          #{budgetResultCode},
+        </if>
+        <if test="budgetResultMsg != null"> 
+          #{budgetResultMsg},
+        </if>
+        <if test="pSsxm != null"> 
+          #{pSsxm},
+        </if>
+        <if test="pFkdw != null"> 
+          #{pFkdw},
+        </if>
+        <if test="pFkdwName != null"> 
+          #{pFkdwName},
+        </if>
+        <if test="pBz != null"> 
+          #{pBz},
+        </if>
+        <if test="pZdr != null"> 
+          #{pZdr},
+        </if>
+        <if test="pSqr != null"> 
+          #{pSqr},
+        </if>
+        <if test="pSsbm != null"> 
+          #{pSsbm},
+        </if>
+        <if test="pSkdw != null"> 
+          #{pSkdw},
+        </if>
+        <if test="pLyxtid != null"> 
+          #{pLyxtid},
+        </if>
+        <if test="pLyxt != null"> 
+          #{pLyxt},
+        </if>
+        <if test="createTime != null"> 
+          #{createTime},
+        </if>
+        <if test="updateTime != null"> 
+          #{updateTime},
+        </if>
+        <if test="budgetTime != null"> 
+          #{budgetTime},
+        </if>
+        <if test="isDeleted != null"> 
+          #{isDeleted},
+        </if>
+        <if test="seq != null"> 
+          #{seq},
+        </if>
+    </trim>
+</insert>
+<update id="updateById" parameterType="com.example.demo.pojo.GrantBudgetMain" >
+update grant_budget_main <set>
+    <if test="requestNo != null">request_no=#{requestNo},</if>
+    <if test="source != null">source=#{source},</if>
+    <if test="orderNo != null">order_no=#{orderNo},</if>
+    <if test="budgetOccupyAmt != null">budget_occupy_amt=#{budgetOccupyAmt},</if>
+    <if test="serialType != null">serial_type=#{serialType},</if>
+    <if test="status != null">status=#{status},</if>
+    <if test="budgetOccupyType != null">budget_occupy_type=#{budgetOccupyType},</if>
+    <if test="grantType != null">grant_type=#{grantType},</if>
+    <if test="budgetBatchNo != null">budget_batch_no=#{budgetBatchNo},</if>
+    <if test="serialNo != null">serial_no=#{serialNo},</if>
+    <if test="actionType != null">action_type=#{actionType},</if>
+    <if test="appId != null">app_id=#{appId},</if>
+    <if test="remark != null">remark=#{remark},</if>
+    <if test="budgetResultCode != null">budget_result_code=#{budgetResultCode},</if>
+    <if test="budgetResultMsg != null">budget_result_msg=#{budgetResultMsg},</if>
+    <if test="pSsxm != null">p_ssxm=#{pSsxm},</if>
+    <if test="pFkdw != null">p_fkdw=#{pFkdw},</if>
+    <if test="pFkdwName != null">p_fkdw_name=#{pFkdwName},</if>
+    <if test="pBz != null">p_bz=#{pBz},</if>
+    <if test="pZdr != null">p_zdr=#{pZdr},</if>
+    <if test="pSqr != null">p_sqr=#{pSqr},</if>
+    <if test="pSsbm != null">p_ssbm=#{pSsbm},</if>
+    <if test="pSkdw != null">p_skdw=#{pSkdw},</if>
+    <if test="pLyxtid != null">p_lyxtid=#{pLyxtid},</if>
+    <if test="pLyxt != null">p_lyxt=#{pLyxt},</if>
+    <if test="createTime != null">create_time=#{createTime},</if>
+    <if test="updateTime != null">update_time=#{updateTime},</if>
+    <if test="budgetTime != null">budget_time=#{budgetTime},</if>
+    <if test="isDeleted != null">is_deleted=#{isDeleted},</if>
+    <if test="seq != null">seq=#{seq},</if></set>
+ where id=#{id}
+</update>
+<delete id="deleteById" parameterType = "java.lang.Long">
+delete from grant_budget_main where id = #{id}
+</delete>
+<select id="selectListByParams" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.GrantBudgetMain">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_main
+    <include refid="Example_Where_Clause"/> 
+</select>
+
+<select id="selectByIds" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_main
+    where id in
+    <foreach collection="ids" open="(" close=")" separator="," item="item">
+        #{item}
+    </foreach> 
+</select>
+
+<select id="selectById" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_main
+    where id = #{id}
+</select>
+
+<select id="selectByObject" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.GrantBudgetMain">
+    select <include refid="Base_Column_List"/> 
+    from grant_budget_main
+    <include refid="Example_Where_Clause"/> limit 1
+</select>
+<!--以上为自动生成的crud代码可根据具体需求自行修改-->
+
+</mapper>

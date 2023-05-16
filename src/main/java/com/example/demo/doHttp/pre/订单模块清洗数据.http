@@ -1,0 +1,17 @@
+POST https://api-pre.longhu.net/lf-wallet-platform-grant-pre/washCompanyTransactionToGrantList
+Content-Type: application/json
+X-Gaia-Api-Key:d0a63582-b723-4174-83d2-def02d5b33e3
+
+{
+  "extra": "{\"activity_no\":\"YH2109221148CJ75001\",\"source\":\"platform_grant\"}",
+  "startId": 65275235,
+  "endId": 75168902,
+  "limitNum": 1000
+}
+
+
+###
+POST https://api-pre.longhu.net/lf-wallet-platform-grant-pre/washGrantListWithJob?washDate=2022-01-14
+Content-Type: application/json
+X-Gaia-Api-Key:d0a63582-b723-4174-83d2-def02d5b33e3
+

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.GrantSyncLogMapper">
+<resultMap id="BaseResultMap" type="com.example.demo.pojo.GrantSyncLog" >
+    <id column="id" property="id"/>
+    <result column="sync_type" property="syncType"/>
+    <result column="table_name" property="tableName"/>
+    <result column="table_id" property="tableId"/>
+    <result column="status" property="status"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+</resultMap>
+<sql id="Base_Column_List" >
+id,sync_type,table_name,table_id,status,create_time,update_time</sql>
+
+<sql id="Example_Where_Clause"><trim prefix="where" prefixOverrides="and|or">  
+<if test="id!= null">and id=#{id}</if>
+<if test="syncType!= null">and sync_type=#{syncType}</if>
+<if test="tableName!= null">and table_name=#{tableName}</if>
+<if test="tableId!= null">and table_id=#{tableId}</if>
+<if test="status!= null">and status=#{status}</if>
+<if test="createTime!= null">and create_time=#{createTime}</if>
+<if test="updateTime!= null">and update_time=#{updateTime}</if></trim></sql>
+<insert id="insert" parameterType="com.example.demo.pojo.GrantSyncLog"  useGeneratedKeys="true" keyProperty="id" >
+    insert into grant_sync_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="syncType != null" >
+          sync_type,
+        </if>
+        <if test="tableName != null" >
+          table_name,
+        </if>
+        <if test="tableId != null" >
+          table_id,
+        </if>
+        <if test="status != null" >
+          status,
+        </if>
+        <if test="createTime != null" >
+          create_time,
+        </if>
+        <if test="updateTime != null" >
+          update_time,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="syncType != null"> 
+          #{syncType},
+        </if>
+        <if test="tableName != null"> 
+          #{tableName},
+        </if>
+        <if test="tableId != null"> 
+          #{tableId},
+        </if>
+        <if test="status != null"> 
+          #{status},
+        </if>
+        <if test="createTime != null"> 
+          #{createTime},
+        </if>
+        <if test="updateTime != null"> 
+          #{updateTime},
+        </if>
+    </trim>
+</insert>
+<update id="updateById" parameterType="com.example.demo.pojo.GrantSyncLog" >
+update grant_sync_log <set>
+    <if test="syncType != null">sync_type=#{syncType},</if>
+    <if test="tableName != null">table_name=#{tableName},</if>
+    <if test="tableId != null">table_id=#{tableId},</if>
+    <if test="status != null">status=#{status},</if>
+    <if test="createTime != null">create_time=#{createTime},</if>
+    <if test="updateTime != null">update_time=#{updateTime},</if></set>
+ where id=#{id}
+</update>
+<delete id="deleteById" parameterType = "java.lang.Long">
+delete from grant_sync_log where id = #{id}
+</delete>
+<select id="selectListByParams" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.GrantSyncLog">
+    select <include refid="Base_Column_List"/> 
+    from grant_sync_log
+    <include refid="Example_Where_Clause"/> 
+</select>
+
+<select id="selectByIds" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from grant_sync_log
+    where id in
+    <foreach collection="ids" open="(" close=")" separator="," item="item">
+        #{item}
+    </foreach> 
+</select>
+
+<select id="selectById" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from grant_sync_log
+    where id = #{id}
+</select>
+
+<select id="selectByObject" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.GrantSyncLog">
+    select <include refid="Base_Column_List"/> 
+    from grant_sync_log
+    <include refid="Example_Where_Clause"/> limit 1
+</select>
+<!--以上为自动生成的crud代码可根据具体需求自行修改-->
+
+</mapper>

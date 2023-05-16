@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StatisticsFkMapper">
+<resultMap id="BaseResultMap" type="com.example.demo.pojo.StatisticsFk" >
+    <id column="id" property="id"/>
+    <result column="serial_number" property="serialNumber"/>
+    <result column="budget_occupy_time" property="budgetOccupyTime"/>
+    <result column="budget_occupy_amt" property="budgetOccupyAmt"/>
+    <result column="person_ad" property="personAd"/>
+    <result column="biz_sys_id" property="bizSysId"/>
+    <result column="create_time" property="createTime"/>
+    <result column="modify_time" property="modifyTime"/>
+    <result column="fk_flag" property="fkFlag"/>
+    <result column="budget_grant_amt" property="budgetGrantAmt"/>
+</resultMap>
+<sql id="Base_Column_List" >
+id,serial_number,budget_occupy_time,budget_occupy_amt,person_ad,biz_sys_id,create_time,modify_time,fk_flag,budget_grant_amt</sql>
+
+<sql id="Example_Where_Clause"><trim prefix="where" prefixOverrides="and|or">  
+<if test="id!= null">and id=#{id}</if>
+<if test="serialNumber!= null">and serial_number=#{serialNumber}</if>
+<if test="budgetOccupyTime!= null">and budget_occupy_time=#{budgetOccupyTime}</if>
+<if test="budgetOccupyAmt!= null">and budget_occupy_amt=#{budgetOccupyAmt}</if>
+<if test="personAd!= null">and person_ad=#{personAd}</if>
+<if test="bizSysId!= null">and biz_sys_id=#{bizSysId}</if>
+<if test="createTime!= null">and create_time=#{createTime}</if>
+<if test="modifyTime!= null">and modify_time=#{modifyTime}</if>
+<if test="fkFlag!= null">and fk_flag=#{fkFlag}</if>
+<if test="budgetGrantAmt!= null">and budget_grant_amt=#{budgetGrantAmt}</if></trim></sql>
+<insert id="insert" parameterType="com.example.demo.pojo.StatisticsFk"  useGeneratedKeys="true" keyProperty="id" >
+    insert into t_statistics_fk
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="serialNumber != null" >
+          serial_number,
+        </if>
+        <if test="budgetOccupyTime != null" >
+          budget_occupy_time,
+        </if>
+        <if test="budgetOccupyAmt != null" >
+          budget_occupy_amt,
+        </if>
+        <if test="personAd != null" >
+          person_ad,
+        </if>
+        <if test="bizSysId != null" >
+          biz_sys_id,
+        </if>
+        <if test="createTime != null" >
+          create_time,
+        </if>
+        <if test="modifyTime != null" >
+          modify_time,
+        </if>
+        <if test="fkFlag != null" >
+          fk_flag,
+        </if>
+        <if test="budgetGrantAmt != null" >
+          budget_grant_amt,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="serialNumber != null"> 
+          #{serialNumber},
+        </if>
+        <if test="budgetOccupyTime != null"> 
+          #{budgetOccupyTime},
+        </if>
+        <if test="budgetOccupyAmt != null"> 
+          #{budgetOccupyAmt},
+        </if>
+        <if test="personAd != null"> 
+          #{personAd},
+        </if>
+        <if test="bizSysId != null"> 
+          #{bizSysId},
+        </if>
+        <if test="createTime != null"> 
+          #{createTime},
+        </if>
+        <if test="modifyTime != null"> 
+          #{modifyTime},
+        </if>
+        <if test="fkFlag != null"> 
+          #{fkFlag},
+        </if>
+        <if test="budgetGrantAmt != null"> 
+          #{budgetGrantAmt},
+        </if>
+    </trim>
+</insert>
+<update id="updateById" parameterType="com.example.demo.pojo.StatisticsFk" >
+update t_statistics_fk <set>
+    <if test="serialNumber != null">serial_number=#{serialNumber},</if>
+    <if test="budgetOccupyTime != null">budget_occupy_time=#{budgetOccupyTime},</if>
+    <if test="budgetOccupyAmt != null">budget_occupy_amt=#{budgetOccupyAmt},</if>
+    <if test="personAd != null">person_ad=#{personAd},</if>
+    <if test="bizSysId != null">biz_sys_id=#{bizSysId},</if>
+    <if test="createTime != null">create_time=#{createTime},</if>
+    <if test="modifyTime != null">modify_time=#{modifyTime},</if>
+    <if test="fkFlag != null">fk_flag=#{fkFlag},</if>
+    <if test="budgetGrantAmt != null">budget_grant_amt=#{budgetGrantAmt},</if></set>
+ where id=#{id}
+</update>
+<delete id="deleteById" parameterType = "java.lang.Long">
+delete from t_statistics_fk where id = #{id}
+</delete>
+<select id="selectListByParams" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.StatisticsFk">
+    select <include refid="Base_Column_List"/> 
+    from t_statistics_fk
+    <include refid="Example_Where_Clause"/> 
+</select>
+
+<select id="selectByIds" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from t_statistics_fk
+    where id in
+    <foreach collection="ids" open="(" close=")" separator="," item="item">
+        #{item}
+    </foreach> 
+</select>
+
+<select id="selectById" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from t_statistics_fk
+    where id = #{id}
+</select>
+
+<select id="selectByObject" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.StatisticsFk">
+    select <include refid="Base_Column_List"/> 
+    from t_statistics_fk
+    <include refid="Example_Where_Clause"/> limit 1
+</select>
+<!--以上为自动生成的crud代码可根据具体需求自行修改-->
+
+</mapper>

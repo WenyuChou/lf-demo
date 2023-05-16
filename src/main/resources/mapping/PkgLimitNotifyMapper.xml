@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PkgLimitNotifyMapper">
+<resultMap id="BaseResultMap" type="com.example.demo.pojo.PkgLimitNotify" >
+    <id column="id" property="id"/>
+    <result column="oa" property="oa"/>
+    <result column="action_type" property="actionType"/>
+    <result column="year" property="year"/>
+    <result column="level" property="level"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+</resultMap>
+<sql id="Base_Column_List" >
+id,oa,action_type,year,level,create_time,update_time</sql>
+
+<sql id="Example_Where_Clause"><trim prefix="where" prefixOverrides="and|or">  
+<if test="id!= null">and id=#{id}</if>
+<if test="oa!= null">and oa=#{oa}</if>
+<if test="actionType!= null">and action_type=#{actionType}</if>
+<if test="year!= null">and year=#{year}</if>
+<if test="level!= null">and level=#{level}</if>
+<if test="createTime!= null">and create_time=#{createTime}</if>
+<if test="updateTime!= null">and update_time=#{updateTime}</if></trim></sql>
+<insert id="insert" parameterType="com.example.demo.pojo.PkgLimitNotify"  useGeneratedKeys="true" keyProperty="id" >
+    insert into t_pkg_limit_notify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="oa != null" >
+          oa,
+        </if>
+        <if test="actionType != null" >
+          action_type,
+        </if>
+        <if test="year != null" >
+          year,
+        </if>
+        <if test="level != null" >
+          level,
+        </if>
+        <if test="createTime != null" >
+          create_time,
+        </if>
+        <if test="updateTime != null" >
+          update_time,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="oa != null"> 
+          #{oa},
+        </if>
+        <if test="actionType != null"> 
+          #{actionType},
+        </if>
+        <if test="year != null"> 
+          #{year},
+        </if>
+        <if test="level != null"> 
+          #{level},
+        </if>
+        <if test="createTime != null"> 
+          #{createTime},
+        </if>
+        <if test="updateTime != null"> 
+          #{updateTime},
+        </if>
+    </trim>
+</insert>
+<update id="updateById" parameterType="com.example.demo.pojo.PkgLimitNotify" >
+update t_pkg_limit_notify <set>
+    <if test="oa != null">oa=#{oa},</if>
+    <if test="actionType != null">action_type=#{actionType},</if>
+    <if test="year != null">year=#{year},</if>
+    <if test="level != null">level=#{level},</if>
+    <if test="createTime != null">create_time=#{createTime},</if>
+    <if test="updateTime != null">update_time=#{updateTime},</if></set>
+ where id=#{id}
+</update>
+<delete id="deleteById" parameterType = "java.lang.Long">
+delete from t_pkg_limit_notify where id = #{id}
+</delete>
+<select id="selectListByParams" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.PkgLimitNotify">
+    select <include refid="Base_Column_List"/> 
+    from t_pkg_limit_notify
+    <include refid="Example_Where_Clause"/> 
+</select>
+
+<select id="selectByIds" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from t_pkg_limit_notify
+    where id in
+    <foreach collection="ids" open="(" close=")" separator="," item="item">
+        #{item}
+    </foreach> 
+</select>
+
+<select id="selectById" resultMap="BaseResultMap"  parameterType = "java.lang.Long">
+    select <include refid="Base_Column_List"/> 
+    from t_pkg_limit_notify
+    where id = #{id}
+</select>
+
+<select id="selectByObject" resultMap="BaseResultMap"  parameterType = "com.example.demo.pojo.PkgLimitNotify">
+    select <include refid="Base_Column_List"/> 
+    from t_pkg_limit_notify
+    <include refid="Example_Where_Clause"/> limit 1
+</select>
+<!--以上为自动生成的crud代码可根据具体需求自行修改-->
+
+</mapper>

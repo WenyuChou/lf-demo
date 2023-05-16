@@ -1,0 +1,16 @@
+###
+POST http://127.0.0.1:8023/grantQd/singleGrant/unencrypted
+Content-Type: application/json
+
+{
+  "outTransNo": "qdtest20211214173206",
+  "serialNumber": "qdfk0000001",
+  "accountNo": "FF-200520-00038",
+  "activityType": "049",
+  "grantAmt": "1",
+  "personOa": "liuqing21",
+  "remark": "千丁发放",
+  "appId": "014",
+  "nonce": "nonce001",
+  "timestamp": 1
+}

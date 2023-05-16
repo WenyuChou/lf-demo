@@ -1,0 +1,30 @@
+POST https://api.longhu.net/lf-wallet-platform-grant-prod/washCompanyTransactionToGrantList
+Content-Type: application/json
+X-Gaia-Api-Key:7e2f9527-16b7-4390-9725-2795199c8389
+
+{
+  "extra": "{\"activity_no\":\"YH2112301159CJ45601\",\"source\":\"platform_grant\"}",
+  "startId": 109038028,
+  "endId": 115298251,
+  "limitNum": 1000
+}
+###
+POST https://api.longhu.net/lf-wallet-trading-endpoint-prod/api/wallet/refund/noencrypt
+
+###
+
+SELECT
+  t.extra,min(t.id),max(t.id),count(t.id),min(t.create_time),max(t.create_time)
+FROM
+  t_company_transaction t
+  left join t_platform_grant_list p on t.out_trans_no = p.wallet_trans_no
+WHERE
+  t.create_time >= '2022-01-19 00:00:00'
+  and t.create_time <= '2022-01-20 23:59:59'
+  and t.extra like  '%platform_grant%'
+  -- and (t.extra like '%YH%' or t.extra like '%YG%')
+  and t.trans_type = 2
+  and t.`status` = 1
+  and p.wallet_trans_no is null
+  group by t.extra;
+

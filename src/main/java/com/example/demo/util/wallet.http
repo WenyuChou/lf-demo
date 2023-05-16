@@ -1,0 +1,24 @@
+POST http://localhost:80/api/item
+Content-Type: application/json
+
+{"activityNo":"YG2105141514CJ69502-1","activityType":"016","applyType":2,"bpmData":{"activityTypeDesc":"榜样的力量","amount":10000.0,"budgetShareDeptCode":"001003005003003","budgetShareDeptNum":"5000013133","jumpApproval":"1","orgGuid":"7f79e1eb-30ab-4e4f-adfe-22df2030a935","personAd":"list","personRealName":"李**","projectType":"0","topic":"发送到发送到"},"requestId":"20210514151453-1"}
+
+###
+POST https://openapi.longhu.net/longfor_expense_api-prod/api/approve/getApprover
+#http://testapi.longhu.net/fk-data-openapi-uat/api/approve/getApprover
+Content-Type: application/json
+Token: e2ba288b-63f9-4a64-ab7f-cafb05dd6899
+x-gaia-api-key: a83a5dbb-1fbf-4a91-a24f-0b82a60b94d2
+
+{
+  "orgId": "001001031",
+  "channel": 1
+}
+
+###根据分摊预算部门编号查询航道信息
+POST http://10.231.135.121:8032/api/platform/grant/getBudgetOrgStr
+Content-Type: application/json
+
+{"BudgetOrgArrays":[{"F_ID":"001003005003003"}]}
+
+

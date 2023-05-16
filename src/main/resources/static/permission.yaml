@@ -1,0 +1,101 @@
+#项目公司
+/projectCompany:
+  -
+
+  #商户
+/SH:
+  - /v1/company/getCompanyListByCompanyName
+  - /platform/activity/grant/orderGrantMerchant
+
+#用户
+YH:
+  - /opGrAccount/getOpUserAccountByAccNo
+  - /v1/user/getInUserByLongminId
+  - /v1/freePaymentLimit/selectInsideUserFreePayment
+  - /v1/account/desensitization/queryPhoneByOaOrLmId
+  - /v1/account/desensitization/queryPhoneByMdg
+  - /v1/phone/change/list
+
+
+#撤回记录
+/withdrawalOfRecords:
+  -
+
+  #资源管理
+/zygl:
+  -
+
+  #收款活动
+/gatheringActivity:
+  - /platform/activity/grant/cancelApply
+  - /platform/mall/activity/admin/deletePlatformMallActivity
+  - /platform/mall/activity/admin/getApplyUserInfo
+  - /order/logistics/selectLogisticsDictionary
+  - /platform/mall/displayReceiptActivityInfo
+  - /platform/mall/activity/admin/updatePlatformMallActivity
+  - /platform/mall/activity/admin/getApplyUser
+  - /v1/user/getFuzzyUserList
+
+
+  #珑珠数据
+/longballdata:
+  - /platform/activity/grant/queryUnRegisteredGrantListTotalAmt
+  - /platform/activity/grant/exportUnRegisteredGrantList
+  - /statistics/getActivityType
+  - /statistics/getJsOrderSumAmt
+  - /dataReport/queryGrantDataList
+  - /data/analysis/queryGrantOption
+  - /dataReport/queryGrantList/makeUp
+  - /data/analysis/queryConsumeOption
+  - /dataReport/queryConsumeDataList
+  - /dataReport/queryConsumeList/makeUp/*
+  - /data/analysis/queryCirculateOption
+  - /dataReport/queryCirculateDataList
+  - /dataReport/queryCirculateList/makeUp
+  - /dataReport/exportGrantDataList
+  - /dataReport/exportConsumeDataList
+  - /dataReport/exportCirculateDataList
+  - /v1/merchant/findPage
+  - /v1/merchant/invoice/doReTry
+  - /tradeCode/queryFfType
+  - /analysis/consume/selectMainMer
+  - /v1/freePaymentLimit/selectConfigOptions
+  - /v1/company/trans/getBackWashAmt
+  - /v1/company/trans/exportSinglyBackWashTrans
+  - /v1/accountFf/exportAccount
+
+  #权限管理
+/quanxianguanli:
+  -
+
+  #活动中心
+/goodsList:
+  -
+
+  #订单管理
+/seckilling:
+  -
+
+  #首页配置
+/shouyepeizhi:
+  - /wallet/admin/home-config/notice/list
+  - /wallet/admin/home-config/operates-position/get-all-common
+  - /wallet/admin/home-config/operates-position/submit
+  - /v1/api/wallet/dictionary/list
+
+
+  #珑珠工单
+/workOrder:
+  -
+
+  #组合收银台
+/zhsyt:
+  -
+
+  #管理员配置
+/GLZPZ:
+  - /redPackActivity/defaultMaxLimit
+
+  #珑珠积分互换
+/pointExchange/company:
+  -
