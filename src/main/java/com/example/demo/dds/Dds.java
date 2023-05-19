@@ -90,7 +90,7 @@ public class Dds {
      -- having amt1 is null;
 
 
-    排查sql2：发放流水多，商户流水少
+    排查sql2：发放流水多，商户流水少,或反之
      select * from t_merchant_transaction where create_time >='2022-12-06 08:11:28' and create_time <= '2022-12-06 08:31:35' and acc_no =
      'SH-201222-000405' and target_acc_no like 'FF%' and out_trans_no not in(
 
@@ -111,6 +111,18 @@ public class Dds {
      排查sql4 查询B端情况
      select * from t_btrade_log where status = 0 and seq = 0 and create_time >= '2023-02-17 11:43:36' and acc_no not like 'JS%' limit 10000;
 
+
+
+     排查sql5 流水缺失情况
+     select * from lfm_account_log where create_time >='2023-04-18 15:50:29' and create_time <= '2023-04-18 16:00:36'
+     -- and trans_amount = 1.1
+     and account_type != 21 and other_account_type != 25
+     and order_no not in(
+     select out_trans_no from t_merchant_transaction where create_time >='2023-04-18 15:50:29' and create_time <= '2023-04-18 16:00:36'
+     )
+     and order_no not in(
+     select order_no from lf_account_log where create_time >='2023-04-18 15:50:29' and create_time <= '2023-04-18 16:00:36'
+     )
 
      */
     public static void xfCalc() {
