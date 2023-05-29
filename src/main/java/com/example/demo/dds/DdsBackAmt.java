@@ -221,7 +221,23 @@ order_no in('QYGB422270902397272078','365897369281953863','QYGB42239734623446636
      select * from lfm_account_log where order_no = 'R1191681790851697';
      --------------------------------------------------------------------------------------------------------------
 
+     -- 以下是调用postman其中一条记录
+     https://api.longhu.net/longem-integrate-prod/api/v1/integrate/baccount/trade
 
+     {
+     "amount":49.8,
+     "transType":2,
+     "businessType":"15022",
+     "inAccNo":"FF-230208-01444",
+     "inAccNoType":20,
+     "outAccNo":"SH-201222-000405",
+     "outAccNoType":22,
+     "remark":"XM2248301-17554",
+     "orderNo":"ref230529100011",
+     "requestNo":"CHYX491429496594366559",
+     "appId":"113",
+     "source":"-100"
+     }
 
      */
 }

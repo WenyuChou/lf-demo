@@ -46,16 +46,49 @@ public class WashRefundBudgetMiss {
         budgetGrant.put("p_fx",budgetDetail.getString("p_fx"));
         budgetGrant.put("p_yslx",budgetDetail.getString("p_yslx"));
         budgetGrant.put("p_fylx",budgetDetail.getString("p_fylx"));
-        budgetGrant.put("p_ftje",budgetDetail.getString("budget_occupy_amt"));
+        budgetGrant.put("p_ftje",budgetGrant.getBigDecimal("budget_occupy_amt"));
 
         System.out.println(JSON.toJSONString(budgetGrant));
-        //
+        JSONObject param = packageParamMain(budgetGrant);
+        doBudgetGrantSync(param);
+    }
+    public static JSONObject packageParamMain(JSONObject jsonObject){
+        JSONObject param = new JSONObject();
+        param.put("requestNo",jsonObject.get("request_no"));
+        param.put("source",jsonObject.get("source"));
+        param.put("orderNo",jsonObject.get("order_no"));
+        param.put("budgetOccupyAmt",jsonObject.get("budget_occupy_amt"));
+        param.put("serialType",jsonObject.get("serial_type"));
+        param.put("status",jsonObject.get("status"));
+        param.put("budgetOccupyType",jsonObject.get("budget_occupy_type"));
+        param.put("grantType",jsonObject.get("grant_type"));
+        param.put("actionType",jsonObject.get("action_type"));
+        param.put("appId",jsonObject.get("app_id"));
+        param.put("pSsxm",jsonObject.get("p_ssxm"));
+        param.put("pFkdw",jsonObject.get("p_fkdw"));
+        param.put("pFkdwName",jsonObject.get("p_fkdw_name"));
+        param.put("pBz",jsonObject.get("p_bz"));
+        param.put("pZdr",jsonObject.get("p_zdr"));
+        param.put("pSqr",jsonObject.get("p_sqr"));
+        param.put("pSsbm",jsonObject.get("p_ssbm"));
+        param.put("pSkdw",jsonObject.get("p_skdw"));
+        param.put("pLyxtid",jsonObject.get("p_lyxtid"));
+        param.put("pLyxt",jsonObject.get("p_lyxt"));
+        param.put("isDeleted",jsonObject.get("is_deleted"));
+        param.put("seq",jsonObject.get("seq"));
+        param.put("pYsftbm",jsonObject.get("p_ysftbm"));
+        param.put("pFx",jsonObject.get("p_fx"));
+        param.put("pYslx",jsonObject.get("p_yslx"));
+        param.put("pFylx",jsonObject.get("p_fylx"));
+        param.put("pFtje",jsonObject.get("p_ftje"));
+        return param;
     }
     public static void doBudgetGrantSync(JSONObject jsonObject){
-        String gateWay = "";
+        String gateWay = "http://10.31.99.46:9092";
+        //String gateWay = "https://api.longfor.com/longem-migrate-prod";
         String url = gateWay + "/grantBudget/syncBudgetMainInfo";
         Map<String,String> heads = new HashMap<>(8);
-        heads.put("","");
+        heads.put("x-gaia-api-key","1de828d1-5105-410b-a03b-75fe1b7892f7");
         String result = HttpClient.doHttp(url,jsonObject.toJSONString(),heads,"POST",10)[1];
         System.out.println(result);
     }
