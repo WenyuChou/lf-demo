@@ -6,8 +6,11 @@ import com.example.demo.util.HttpClient;
 import com.example.demo.util.OnlineSql;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -17,8 +20,14 @@ import java.util.Map;
 @Slf4j
 public class WashRefundBudgetMiss {
 
-    public static void main(String[] args) {
-        washRefundBudgetMiss(200983273);
+    public static void main(String[] args) throws Exception{
+        List<Integer> listId = Arrays.asList(200983273,200984127,200982267,200989515,200980648,200993565,200993566,200980430,200980606,200982470,200997658,200983058,200980564,200981178,200983057,200982471,200983250,200984469,200983080,200993329,200983325,200980574,200980960,200980327);
+        List<Integer> collect = listId.stream().distinct().collect(Collectors.toList());
+        for (Integer integer : collect) {
+            //washRefundBudgetMiss(integer);
+            Thread.sleep(500);
+        }
+        //80367225
     }
 
     public static void washRefundBudgetMiss(Integer refundOrderId) {
@@ -84,8 +93,8 @@ public class WashRefundBudgetMiss {
         return param;
     }
     public static void doBudgetGrantSync(JSONObject jsonObject){
-        String gateWay = "http://10.31.99.46:9092";
-        //String gateWay = "https://api.longfor.com/longem-migrate-prod";
+        //String gateWay = "http://10.31.99.46:9092";
+        String gateWay = "https://api.longfor.com/longem-migrate-prod";
         String url = gateWay + "/grantBudget/syncBudgetMainInfo";
         Map<String,String> heads = new HashMap<>(8);
         heads.put("x-gaia-api-key","1de828d1-5105-410b-a03b-75fe1b7892f7");

@@ -1,4 +1,5 @@
 package com.example.demo.pojo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -81,4 +82,20 @@ public class GrantBudgetMain implements Serializable {
     /**order_no,seq建立唯一索引*/
     private Long seq;
 
+
+
+
+    private Long parentId;
+    /**预算分摊组织编码*/
+    private String pYsftbm;
+    /**预算分摊组织名称*/
+    private String pYsftbmName;
+    /**费项*/
+    private String pFx;
+    /**预算类型*/
+    private String pYslx;
+    /**费用类型*/
+    private String pFylx;
+    /**分摊金额*/
+    private BigDecimal pFtje;
 }

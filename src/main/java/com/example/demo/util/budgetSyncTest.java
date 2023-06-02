@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.pojo.GrantBudgetMain;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -12,29 +13,44 @@ import java.util.*;
  */
 public class budgetSyncTest {
     public static void main(String[] args) {
-        //syncBudgetMain();
+        //syncBudgetMain(77749171);
+        //syncBudgetMain(77749212);
+        //syncBudgetMain(77749185);
         //deleteBudgetMain();
         //deleteBudgetDetailLh();
         //updateGrantOrder();
-        updateGrantBatchInf();
+        //updateGrantBatchInf();
+        sqlTest();
     }
 
-    public static String prod = "https://api.longhu.net/longem-migrate-prod";
+    //public static String prod = "https://api.longhu.net/longem-migrate-prod";
     public static String uat = "http://10.31.99.46:9092";
-
+    public static void sqlTest(){
+        OnlineSql onlineSql = new OnlineSql();
+        String sql = "select * from t_grant_budget_prehandle where id >=77751723 and budget_occupy_amt > 0 and trans_type = 1\n" +
+                "and trans_no not in(select request_no from grant_budget_main where create_time>='2023-06-01 22:00:00')\n" +
+                "order by budget_occupy_amt desc limit 1101";
+        List<JSONObject> jsonObjects = onlineSql.querySql(sql);
+        BigDecimal budget_occupy_amt = jsonObjects.stream().map(jsonObject -> jsonObject.getBigDecimal("budget_occupy_amt")).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println(budget_occupy_amt);
+    }
     public static void syncBudgetMain() {
         OnlineSql onlineSql = new OnlineSql();
-        String sql = "select * from t_grant_budget_prehandle where create_time > '2023-05-16 22:00:00' order by create_time desc limit 10";
+        String sql = "select * from t_grant_budget_prehandle where id >=77751723 and budget_occupy_amt > 0 and trans_type = 1\n" +
+                "and trans_no not in(select request_no from grant_budget_main where create_time>='2023-06-01 22:00:00')\n" +
+                "order by budget_occupy_amt desc limit 1101";
         List<JSONObject> jsonObjects = onlineSql.querySql(sql);
-        System.out.println(jsonObjects.get(0).toJSONString());
-        GrantBudgetMain grantBudgetMain = changeBudgetMain(jsonObjects.get(0), onlineSql);
-        System.out.println(JSON.toJSONString(grantBudgetMain));
-        doSync(grantBudgetMain);
+        for (JSONObject js : jsonObjects) {
+            GrantBudgetMain grantBudgetMain = changeBudgetMain(js, onlineSql);
+            doSync(grantBudgetMain);
+        }
     }
 
     public static void doSync(GrantBudgetMain main) {
-        String url = prod + "/grantBudget/syncBudgetMainInfo";
-        String[] posts = HttpClient.doHttp(url, JSON.toJSONString(main), "POST", 10);
+        String url = uat + "/grantBudget/syncBudgetMainInfo";
+        Map<String, String> heads = new HashMap<>();
+        heads.put("x-gaia-api-key", "1de828d1-5105-410b-a03b-75fe1b7892f7");
+        String[] posts = HttpClient.doHttp(url, JSON.toJSONString(main), heads,"POST", 10);
         System.out.println(posts[0] + " --- " + posts[1]);
     }
 
@@ -47,7 +63,7 @@ public class budgetSyncTest {
         for (Integer id : ids) {
             JSONObject js = new JSONObject();
             js.put("id", Long.valueOf(id));
-            String url = prod + "/grantBudget/cleanUpBudgetMainInfo";
+            String url = uat + "/grantBudget/cleanUpBudgetMainInfo";
             String[] posts = HttpClient.doHttp(url, js.toJSONString(), heads, "POST", 10);
             System.out.println(posts[0] + " --- " + posts[1]);
         }
@@ -61,7 +77,7 @@ public class budgetSyncTest {
         for (Integer id : ids) {
             JSONObject js = new JSONObject();
             js.put("id", Long.valueOf(id));
-            String url = prod + "/grantBudget/cleanUpGrantBudgetDetailLhInfo";
+            String url = uat + "/grantBudget/cleanUpGrantBudgetDetailLhInfo";
             String[] posts = HttpClient.doHttp(url, js.toJSONString(),heads, "POST", 10);
             System.out.println(posts[0] + " --- " + posts[1]);
         }
@@ -77,7 +93,7 @@ public class budgetSyncTest {
             js.put("id", Long.valueOf(id));
             js.put("status", 0);
             js.put("errorMsg", " ");
-            String url = prod + "/grantBudget/updateGrantOrderById";
+            String url = uat + "/grantBudget/updateGrantOrderById";
             String[] posts = HttpClient.doHttp(url, js.toJSONString(),heads, "POST", 10);
             System.out.println(posts[0] + " --- " + posts[1]);
         }
@@ -92,7 +108,7 @@ public class budgetSyncTest {
             js.put("id", Long.valueOf(id));
             js.put("status", 0);
             js.put("errorMsg", " ");
-            String url = prod + "/grantBudget/updateGrantBatchInfById";
+            String url = uat + "/grantBudget/updateGrantBatchInfById";
             String[] posts = HttpClient.doHttp(url, js.toJSONString(),heads, "POST", 10);
             System.out.println(posts[0] + " --- " + posts[1]);
         }
@@ -129,6 +145,14 @@ public class budgetSyncTest {
         main.setPLyxt(json.getString("p_lyxt"));
         main.setIsDeleted(0);
         main.setSeq(0L);
+
+        String sqlDetail = "select * from t_grant_budget_expense where budget_prehandle_id = ".concat(json.getString("id")).concat(" limit 1");
+        JSONObject detail = onlineSql.querySql(sqlDetail).get(0);
+        main.setPYsftbm(detail.getString("p_ysftbm"));
+        main.setPFx(detail.getString("p_fx"));
+        main.setPYslx(detail.getString("p_yslx"));
+        main.setPFylx(detail.getString("p_fylx"));
+        main.setPFtje(main.getBudgetOccupyAmt());
         return main;
     }
 }
