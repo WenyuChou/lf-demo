@@ -13,14 +13,14 @@ import java.util.*;
  */
 public class budgetSyncTest {
     public static void main(String[] args) {
-        //syncBudgetMain(77749171);
+        syncBudgetMain();
         //syncBudgetMain(77749212);
         //syncBudgetMain(77749185);
         //deleteBudgetMain();
         //deleteBudgetDetailLh();
         //updateGrantOrder();
         //updateGrantBatchInf();
-        sqlTest();
+        //sqlTest();
     }
 
     //public static String prod = "https://api.longhu.net/longem-migrate-prod";
@@ -28,7 +28,7 @@ public class budgetSyncTest {
     public static void sqlTest(){
         OnlineSql onlineSql = new OnlineSql();
         String sql = "select * from t_grant_budget_prehandle where id >=77751723 and budget_occupy_amt > 0 and trans_type = 1\n" +
-                "and trans_no not in(select request_no from grant_budget_main where create_time>='2023-06-01 22:00:00')\n" +
+                "and trans_no not in(select order_no from grant_budget_main where create_time>='2023-06-01 22:00:00')\n" +
                 "order by budget_occupy_amt desc limit 1101";
         List<JSONObject> jsonObjects = onlineSql.querySql(sql);
         BigDecimal budget_occupy_amt = jsonObjects.stream().map(jsonObject -> jsonObject.getBigDecimal("budget_occupy_amt")).reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -40,9 +40,11 @@ public class budgetSyncTest {
                 "and trans_no not in(select request_no from grant_budget_main where create_time>='2023-06-01 22:00:00')\n" +
                 "order by budget_occupy_amt desc limit 1101";
         List<JSONObject> jsonObjects = onlineSql.querySql(sql);
+        int count = 1;
         for (JSONObject js : jsonObjects) {
             GrantBudgetMain grantBudgetMain = changeBudgetMain(js, onlineSql);
             doSync(grantBudgetMain);
+            System.out.println("count:" + count++);
         }
     }
 
